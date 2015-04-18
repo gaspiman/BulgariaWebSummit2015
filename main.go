@@ -90,6 +90,7 @@ func getHTML(inCH chan inChannel, outCH chan outChannel, wg *sync.WaitGroup) {
 		html, err := http.Get(in.url)
 		if err != nil {
 			log.Println(err)
+			continue
 		}
 		// Log the url - for demonstration purposes only
 		log.Println(in.url)
