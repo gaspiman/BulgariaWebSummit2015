@@ -78,7 +78,7 @@ func getStatuses(urls []string, inCH chan inChannel, outCH chan outChannel, wg *
 	// Wait for all goroutines to finish
 	wg.Wait()
 	// Closing the outChannel
-	//close(outCH)
+	close(outCH)
 	// Return the statuses
 	return statuses
 }
