@@ -36,6 +36,8 @@ func parseURL(w http.ResponseWriter, r *http.Request) {
 	outCH := make(chan outChannel)
 	// Start workers
 	for i := 0; i < 250; i++ {
+		// Increase the WaitGroup counter
+		wg.Add(1)
 		go getHTML(inCH, outCH, wg)
 	}
 	// Decoding the json request into a variable
@@ -76,7 +78,7 @@ func getStatuses(urls []string, inCH chan inChannel, outCH chan outChannel, wg *
 	// Wait for all goroutines to finish
 	wg.Wait()
 	// Closing the outChannel
-	close(outCH)
+	//close(outCH)
 	// Return the statuses
 	return statuses
 }
